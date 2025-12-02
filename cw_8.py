@@ -81,6 +81,19 @@ nums2 = [1, 2, 3, 4]
 result = list(map(lambda a, b: a ** b, nums1, nums2))
 print(result)
 
+# prices = [100, 33, 67, 99, 45]
+# expensive = list(filter(lambda x: x > 50, prices))
+# print(prices)
+# print(expensive)
+#
+# userPass = ['1111', 'qwer', '3232']
+#
+# for log, passw in zip(userLogs, userPass):
+#     print(f"login: {log}, password: {passw}")
+#
+# print(list(zip(userLogs, userPass)))
+
+
 prices = [100, 33, 67, 99, 45]
 expensive = list(filter(lambda x: x > 50, prices))
 print(prices)
@@ -88,9 +101,6 @@ print(expensive)
 
 userPass = ['1111', 'qwer', '3232']
 
-for log, passw in zip(userLogs, userPass):
-    print(f"login: {log}, password: {passw}")
 
-print(list(zip(userLogs, userPass)))
 
 
