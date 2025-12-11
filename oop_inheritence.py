@@ -1,12 +1,18 @@
 class Animal:
     def __init__(self, name):
         self.name = name
+        self.__id = 0
+        self._protected_prop = 1
 
     def speak(self):
         print("some sound!")
 
     def get_info(self):
         return f"Name: {self.name}"
+
+    @property
+    def protected_prop(self):
+        return self._protected_prop
 
 
 class Cat(Animal):
@@ -35,11 +41,15 @@ class Dog(Animal):
 
 cat1 = Cat("murzik", 10)
 cat1.speak()
+print(cat1.name)
+# cat1.protected_prop = 2
+print(cat1.protected_prop)
 print(cat1.get_info())
 
-dog1 = Dog("sharik")
+dog1 = Dog("sharik", 2)
 dog1.speak()
 dog1.guard_house()
+
 
 # class Cat:
 #     def __init__(self, name, age, color):
@@ -69,3 +79,31 @@ dog1.guard_house()
 #
 #     def get_info(self):
 #         return f"Name: {self.__name}\nage: {self.__age}\ncolor: {self.__color}"
+
+
+class MathTools:
+
+    @staticmethod
+    def add(a, b):
+        return a + b
+
+
+print(MathTools.add(4, 5))
+
+
+class User:
+    def __init__(self, name, age):
+        self.name = name
+        if not User.is_valid_age(age):
+            raise ValueError("Age must be positive !")
+        self.age = age
+
+    @staticmethod
+    def is_valid_age(age):
+        return age > 0
+
+
+user1 = User('Mask', 23)
+print(User.is_valid_age(-10))
+
+
