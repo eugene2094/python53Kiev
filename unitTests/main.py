@@ -1,4 +1,5 @@
 def add(*args, **kwargs):
+    logging.info("Add func start working!")
     result = 0
     for elem in list(args) + list(kwargs.values()):
         if isinstance(elem, (int, float, bool)):
@@ -7,8 +8,8 @@ def add(*args, **kwargs):
             try:
                 result += float(elem)
                 continue
-            except (ValueError, TypeError):
-                pass
+            except (ValueError, TypeError) as ex:
+                logging.error(ex)
     return result
 
 
@@ -20,3 +21,26 @@ def devide(*args, **kwargs):
     for elem in kwargs.values():
         result += elem
     return result
+
+
+import logging
+
+logging.basicConfig(level=logging.DEBUG, filename='logs.log', filemode='a',
+                    format="We have next logging message: %(asctime)s:%(levelname)s - %(message)s")
+
+# logging.debug("debug")
+# logging.info("info")
+# logging.warning("warning")
+# logging.error("error")
+# logging.critical("critical")
+
+try:
+    logging.warning("cant devide by zero")
+    print(10 / 0)
+
+except Exception as ex:
+    logging.exception(ex)
+    logging.error(ex)
+
+
+add(2,"2asd")
