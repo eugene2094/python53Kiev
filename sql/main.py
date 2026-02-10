@@ -34,15 +34,15 @@ def main():
     #     ('iphone 7', 800, 10),
     #     ('samsung galaxy S23', 900, 10)
     # ])
-    model_id = random.randint(1, 4)
-    cursor.execute(" SELECT price FROM products WHERE id = ?", (model_id,))
-    product_price = cursor.fetchone()[0]
-
-    quantity = random.randint(1, 10)
-    total_price = product_price * quantity
-
-    cursor.execute("INSERT INTO orders (product_id,quantity,total_price) VALUES (?,?,?)",
-                   (model_id, quantity, total_price))
+    # model_id = random.randint(1, 4)
+    # cursor.execute(" SELECT price FROM products WHERE id = ?", (model_id,))
+    # product_price = cursor.fetchone()[0]
+    #
+    # quantity = random.randint(1, 10)
+    # total_price = product_price * quantity
+    #
+    # cursor.execute("INSERT INTO orders (product_id,quantity,total_price) VALUES (?,?,?)",
+    #                (model_id, quantity, total_price))
 
     # cursor.execute("SELECT * FROM products")
     # cursor.execute("SELECT name,price FROM products")
@@ -60,12 +60,18 @@ def main():
     # cursor.execute("UPDATE products SET stock = ? WHERE id = ?", (8, 2))
     # cursor.execute("SELECT * FROM orders;")
 
-    cursor.execute("""
-       SELECT products.name, orders.quantity,orders.total_price
-       FROM orders
-       JOIN products ON orders.product_id = products.id;    
-    """)
+    # cursor.execute("""
+    #    SELECT products.name, orders.quantity,orders.total_price
+    #    FROM orders
+    #    JOIN products ON orders.product_id = products.id;
+    # """)
 
+
+    # count()- підрахунок кількості
+
+    cursor.execute("SELECT COUNT(*) AS total_orders FROM orders")
+
+    cursor.execute("SELECT COUNT(DISTINCT product_id) FROM orders")
 
 
     for row in cursor.fetchall():
